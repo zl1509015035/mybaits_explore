@@ -7,13 +7,31 @@
         <groupId>org.zhul</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
+    <packaging>jar</packaging>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>IPersistence</artifactId>
 
     <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
+        <java.version>1.8</java.version>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <!-- 配置此配置，其他工程才能正常引入jar包 -->
+                    <classifier>exec</classifier>
+                    <!-- 配置此项，与springboot的热部署一起使用，不配置则会不生效  -->
+                    <!--            <fork>true</fork>-->
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
