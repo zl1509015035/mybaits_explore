@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>mybaits_explore</artifactId>
-        <groupId>org.zhul</groupId>
+        <groupId>com.zhul</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -22,14 +22,10 @@
 
     <!--导入自定义持久层框架的依赖 -->
     <dependencies>
-<!--        <dependency>-->
-<!--            <groupId>com.zhul</groupId>-->
-<!--            <artifactId>IPersistence</artifactId>-->
-<!--            <version>1.0-SNAPSHOT</version>-->
-<!--        </dependency>-->
         <dependency>
-            <groupId></groupId>
-            <artifactId></artifactId>
+            <groupId>org.zhul</groupId>
+            <artifactId>IPersistence</artifactId>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
 
