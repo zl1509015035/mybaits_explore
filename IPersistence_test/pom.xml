@@ -23,7 +23,7 @@
     <!--导入自定义持久层框架的依赖 -->
     <dependencies>
         <dependency>
-            <groupId>org.zhul</groupId>
+            <groupId>com.zhul</groupId>
             <artifactId>IPersistence</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
