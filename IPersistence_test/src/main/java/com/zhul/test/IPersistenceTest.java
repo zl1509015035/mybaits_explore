@@ -1,6 +1,7 @@
 package com.zhul.test;
 
 import com.zhul.io.Resources;
+import com.zhul.pojo.User;
 import com.zhul.sqlSession.SqlSessFactory;
 import com.zhul.sqlSession.SqlSession;
 import com.zhul.sqlSession.SqlSessionFactoryBuilder;
@@ -26,5 +27,12 @@ public class IPersistenceTest {
         SqlSessFactory sqlSessFactory = new SqlSessionFactoryBuilder().build(resourceAsStream);
 
         SqlSession sqlSession = sqlSessFactory.openSession();
+
+        //调用
+        User user = new User();
+        user.setId(1);
+        user.setUsername("张三");
+        User userResult = sqlSession.selectOne("user.selectOne", user);
+
     }
 }

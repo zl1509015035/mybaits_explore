@@ -39,18 +39,21 @@ public class XMLConfigBuilder {
         Element rootElement = document.getRootElement();
         List<Element> list = rootElement.selectNodes("//property");
         Properties properties = new Properties();
+        //获取<property>标签的name和value属性
         for (Element element : list) {
             String name = element.attributeValue("name");
             String value = element.attributeValue("value");
             properties.setProperty(name, value);
         }
 
+        //数据库链接配置 C3P0
         ComboPooledDataSource comboPooledDataSource = new ComboPooledDataSource();
         comboPooledDataSource.setDriverClass(properties.getProperty("driverClass"));
         comboPooledDataSource.setJdbcUrl(properties.getProperty("jdbcUrl"));
         comboPooledDataSource.setUser(properties.getProperty("username"));
         comboPooledDataSource.setPassword(properties.getProperty("password"));
 
+        //将DataSource属性设置
         configuration.setDataSource(comboPooledDataSource);
 
         //mapper.xml解析：拿到路径--字节输入流---dom4j进行解析
