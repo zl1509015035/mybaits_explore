@@ -7,8 +7,11 @@ import com.zhul.utils.GenericTokenParser;
 import com.zhul.utils.ParameterMapping;
 import com.zhul.utils.ParameterMappingTokenHandler;
 
+import java.lang.reflect.Field;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.util.List;
 
 /**
@@ -30,18 +33,54 @@ public class SimpleExecutor implements Executor {
         PreparedStatement preparedStatement = connection.prepareStatement(boundSql.getSqlText());
 
         //4.设置参数
+        //获取到了 入参的全路径
+        String paramterType = mappedStatement.getParamterType();
+        Class<?> paramtertypeClass = getClassType(paramterType);
+
+
         List<ParameterMapping> parameterMappingList = boundSql.getParameterMappingList();
         for (int i = 0; i < parameterMappingList.size(); i++) {
             ParameterMapping parameterMapping = parameterMappingList.get(0);
             String content = parameterMapping.getContent();
 
             //反射
+            Field declaredField = paramtertypeClass.getDeclaredField(content);
+            //暴力访问
+            declaredField.setAccessible(true);
+            Object o = declaredField.get(params[0]);
+
+            preparedStatement.setObject(i + 1,0);
 
         }
 
         //5.执行sql
+        ResultSet resultSet = preparedStatement.executeQuery();
 
         //6.封装返回结果集
+        while(resultSet.next()){
+            //元数据
+            ResultSetMetaData metaData = resultSet.getMetaData();
+            for (int i = 0; i <= metaData.getColumnCount(); i++) {
+                //字段名
+                String columnName = metaData.getColumnName(i);
+                //字段的值
+                Object object = resultSet.getObject(columnName);
+
+                //使用反射，根据数据库表和实体的对应关系，完成封装
+
+            }
+        }
+
+
+
+        return null;
+    }
+
+    private Class<?> getClassType(String paramterType) throws ClassNotFoundException {
+        if (paramterType != null) {
+            Class<?> aClass = Class.forName(paramterType);
+            return aClass;
+        }
         return null;
     }
 
