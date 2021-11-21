@@ -60,14 +60,15 @@ public class SimpleExecutor implements Executor {
         String resultType = mappedStatement.getResultType();
 
         Class<?> resultTypeClass = getClassType(resultType);
-        Object o = resultTypeClass.newInstance();
 
         ArrayList<Object> objects = new ArrayList<>();
         //6.封装返回结果集
         while (resultSet.next()) {
+            Object o = resultTypeClass.newInstance();
             //元数据
             ResultSetMetaData metaData = resultSet.getMetaData();
             for (int i = 1; i <= metaData.getColumnCount(); i++) {
+
                 //字段名
                 String columnName = metaData.getColumnName(i);
                 //字段的值

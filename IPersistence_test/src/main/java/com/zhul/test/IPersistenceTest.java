@@ -8,6 +8,7 @@ import com.zhul.sqlSession.SqlSessionFactoryBuilder;
 import org.junit.Test;
 
 import java.io.InputStream;
+import java.util.List;
 
 /**
  * @author juanwang
@@ -34,7 +35,10 @@ public class IPersistenceTest {
         User user = new User();
         user.setId(1);
         user.setUsername("张三");
-        User userResult = sqlSession.selectOne("user.selectOne", user);
-        System.out.println(userResult);
+/*        User userResult = sqlSession.selectOne("user.selectOne", user);
+        System.out.println(userResult);*/
+
+        List<User> list = sqlSession.selectList("user.selectList");
+        list.forEach(System.out::println);
     }
 }
