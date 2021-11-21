@@ -18,7 +18,7 @@ public class DefaultSqlSession implements SqlSession {
     }
 
     @Override
-    public <E> List<E> selectList(String statementid, Object... params) {
+    public <E> List<E> selectList(String statementid, Object... params) throws Exception {
         //将要完成对simpleExecutor里的query方法的调用
         SimpleExecutor simpleExecutor = new SimpleExecutor();
         MappedStatement mappedStatement = configuration.getMappedStatementMap().get(statementid);
@@ -27,7 +27,7 @@ public class DefaultSqlSession implements SqlSession {
     }
 
     @Override
-    public <T> T selectOne(String statementid, Object... params) {
+    public <T> T selectOne(String statementid, Object... params) throws Exception {
         List<Object> objects = selectList(statementid, params);
         if (objects.size() == 1) {
             return (T) objects.get(0);

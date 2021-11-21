@@ -9,8 +9,8 @@ import java.util.List;
 public interface SqlSession {
 
     //查询所有
-    public <E> List<E> selectList(String statementid,Object... params);
+    public <E> List<E> selectList(String statementid,Object... params) throws Exception;
 
     //根据条件查询单个
-    public <T> T selectOne(String statementid,Object... params);
+    public <T> T selectOne(String statementid,Object... params) throws Exception;
 }

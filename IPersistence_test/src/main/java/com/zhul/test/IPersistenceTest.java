@@ -5,6 +5,7 @@ import com.zhul.pojo.User;
 import com.zhul.sqlSession.SqlSessFactory;
 import com.zhul.sqlSession.SqlSession;
 import com.zhul.sqlSession.SqlSessionFactoryBuilder;
+import org.junit.Test;
 
 import java.io.InputStream;
 
@@ -14,6 +15,7 @@ import java.io.InputStream;
  */
 public class IPersistenceTest {
 
+    @Test
     public void test() throws Exception{
         //获取文件输入流
         InputStream resourceAsStream =
@@ -33,6 +35,6 @@ public class IPersistenceTest {
         user.setId(1);
         user.setUsername("张三");
         User userResult = sqlSession.selectOne("user.selectOne", user);
-
+        System.out.println(userResult);
     }
 }
