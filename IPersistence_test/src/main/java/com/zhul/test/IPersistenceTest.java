@@ -1,5 +1,6 @@
 package com.zhul.test;
 
+import com.zhul.dao.IUserDao;
 import com.zhul.io.Resources;
 import com.zhul.pojo.User;
 import com.zhul.sqlSession.SqlSessFactory;
@@ -31,14 +32,20 @@ public class IPersistenceTest {
 
         SqlSession sqlSession = sqlSessFactory.openSession();
 
-        //调用
+
         User user = new User();
         user.setId(1);
         user.setUsername("张三");
-/*        User userResult = sqlSession.selectOne("user.selectOne", user);
-        System.out.println(userResult);*/
 
-        List<User> list = sqlSession.selectList("user.selectList");
-        list.forEach(System.out::println);
+        IUserDao userDao = sqlSession.getMapper(IUserDao.class);
+/*
+        List<User> all = userDao.findAll();
+        System.out.println(all);*/
+
+        User result = userDao.findByCondition(user);
+        System.out.println(result);
+
+
+
     }
 }

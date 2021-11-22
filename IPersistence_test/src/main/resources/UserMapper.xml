@@ -1,10 +1,10 @@
-<mapper namespace="user">
+<mapper namespace="com.zhul.dao.IUserDao">
 
-    <select id="selectList" resultType="com.zhul.pojo.User">
+    <select id="findAll" resultType="com.zhul.pojo.User">
         select * from user
     </select>
 
-    <select id="selectOne" paramterType = "com.zhul.pojo.User" resultType="com.zhul.pojo.User">
+    <select id="findByCondition" paramterType = "com.zhul.pojo.User" resultType="com.zhul.pojo.User">
         select * from user where id = #{id} and username = #{username}
     </select>
 
